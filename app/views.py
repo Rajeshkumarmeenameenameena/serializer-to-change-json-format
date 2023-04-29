@@ -1,8 +1,17 @@
-from django.shortcuts import render,HttpResponse,redirect
-from .models import *
-from rest_framework import viewsets
-from .serializers import *
-# Create your views here.
-class studentviewset(viewsets.ModelViewSet):
-    queryset=employee.objects.all()
-    serializer_class=studentserializer
+
+from django.http import JsonResponse
+from . models import employee
+from .serializers import serializeremployee,useremployee
+from django.contrib.auth.models import User
+def serializerlist(request):
+    emp=employee.objects.all()
+    serializer=serializeremployee(emp,many=True)
+    data1=serializer.data
+    return JsonResponse(data1,safe=False)
+
+def userlist(request):
+    emp=User.objects.all()
+    print(emp)
+    serializer=useremployee(emp,many=True)
+    data1=serializer.data
+    return JsonResponse(data1,safe=False)

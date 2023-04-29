@@ -1,9 +1,11 @@
-
-from .models import *
 from rest_framework import serializers
-
-class studentserializer(serializers.ModelSerializer):
-    class Meta:
-        model=employee
-        fields='__all__'
-        
+class serializeremployee(serializers.Serializer):
+    name=serializers.CharField(max_length=30 )
+    email=serializers.EmailField(max_length=30)
+    password=serializers.CharField(max_length=30)
+    
+    
+class useremployee(serializers.Serializer):
+    first_name=serializers.CharField(max_length=30)
+    email=serializers.EmailField(max_length=30)
+    password=serializers.CharField(max_length=30)
